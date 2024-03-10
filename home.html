@@ -1,0 +1,1073 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI</title>
+
+    <!-- Bootstrap5 cdn link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+     
+    <!-- FONTAWESOME ICON LINK -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- BOOTSTRAP ICON LINK -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">   
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+
+<style>
+    ::-webkit-scrollbar{
+        display: none;
+    }
+
+    /* to avoid border box onclick of input */
+    input:focus,
+    button:focus,
+    option:focus,
+    .form-control:focus{
+        outline: none;
+        box-shadow: none;
+    }
+
+    a{
+        color:unset!important;
+        text-decoration:none!important;
+    }
+
+    /* START NAVBAR STYLE  */
+    /* Navbar toggle button */
+    .custom-toggler .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 166, 0, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    }
+      
+    .custom-toggler.navbar-toggler {
+        border-color: rgba(255, 166, 0, 1);
+    }
+
+    @media only screen and (max-width: 767px){
+    .navbar-nav {
+        float: right;
+        text-align: right;
+        /* margin-top:20px; */
+      }
+      .navbarpadding{
+        padding:15px !important;
+      }
+    }
+ 
+    @media only screen and (min-width: 768px){
+      .nav-item{
+        margin-left:40px
+      }
+      .navbarpadding{
+        padding:25px !important;
+      }
+    }
+    /* END NAVBAR STYLE  */
+
+    .dashboard {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
+
+    .dashboard-app {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-flex: 2;
+        -webkit-flex-grow: 2;
+        -ms-flex-positive: 2;
+        flex-grow: 2;
+        /* height:100%; */
+        margin-top:35px;
+        /* overflow:scroll; */
+    }
+
+    .dashboard-content {
+        -webkit-box-flex: 2;
+        -webkit-flex-grow: 2;
+        -ms-flex-positive: 2;
+        flex-grow: 2;
+    }
+
+    .dashboard-nav {
+        min-width: 210px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        overflow: auto;
+        background-image: linear-gradient(#5A65B0, #1DB099);
+    }
+
+    .dashboard-compact .dashboard-nav {
+        display: none;
+    }
+
+    .dashboard-nav header {
+        min-height: 84px;
+        padding: 8px 27px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .dashboard-nav header .menu-toggle {
+        display: none;
+        margin-right: auto;
+    }
+
+    .dashboard-nav a {
+        color:#FFF!important;
+        font-size: 14px;
+        letter-spacing: 0.56px;
+        font-family:'Urbanist',sans-serif;
+        font-weight:500;
+       /*  margin-left: 10px;
+        margin-right: 10px */
+    }
+
+    .logout{
+        color: #FFFFFF;
+        font-size: 14px;
+        letter-spacing: 0.56px;
+        /* font-family:'Urbanist',sans-serif; */
+        cursor: pointer;
+        background-color:#2163D3;
+        border-radius: 8px;
+        width: 100px;
+        margin-left:10px;
+        margin-top:50px;
+        font-weight:100;
+    }
+
+    .dashboard-nav a:hover {
+        text-decoration: none;
+    }
+
+    .dashboard-nav-list {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+    .dashboard-nav-item {
+        /* min-height: 56px; */
+        padding: 10px 0px 6px 20px;
+        /* padding-left:40px; */
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        letter-spacing: 0.02em;
+        transition: ease-out 0.5s;
+        cursor:pointer;
+    }
+
+/* .active {
+    background: rgba(0, 0, 0, 0.1);
+} */
+
+    .dashboard-nav-dropdown {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+    .dashboard-nav-dropdown.show {
+        background: rgba(255, 255, 255, 0.04);
+    }
+
+    .dashboard-nav-dropdown.show > .dashboard-nav-dropdown-toggle {
+        font-weight: bold;
+    }
+
+    .dashboard-nav-dropdown.show > .dashboard-nav-dropdown-toggle:after {
+        -webkit-transform: none;
+        -o-transform: none;
+        transform: none;
+    }
+
+    .dashboard-nav-dropdown.show > .dashboard-nav-dropdown-menu {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
+
+    .dashboard-nav-dropdown-toggle:after {
+        content: "";
+        margin-left: auto;
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid rgba(81, 81, 81, 0.8);
+        -webkit-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+
+    .dashboard-nav .dashboard-nav-dropdown-toggle:after {
+        border-top-color: rgba(255, 255, 255, 0.72);
+    }
+
+    .dashboard-nav-dropdown-menu {
+        display: none;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+    .dashboard-nav-dropdown-item {
+        min-height: 40px;
+        padding: 10px 20px 10px 70px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        transition: ease-out 0.5s;
+    }
+
+    .dashboard-nav-dropdown-item:hover {
+        background: rgba(255, 255, 255, 0.04);
+    }
+
+    .menu-toggle {
+        position: relative;
+        width: 50px;
+        height: 40px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        color: #fff;
+        font-size:large;
+        background-color:#2163D3;
+        border-radius:10px;
+    }
+
+    .menu-toggle:hover, .menu-toggle:active, .menu-toggle:focus {
+        text-decoration: none;
+        color: #fff;
+    }
+    /* 
+    .menu-toggle i {
+        font-size: 20px;
+    } */
+
+    .dashboard-toolbar {
+        /* min-height: 84px; */
+        background-color: #dfdfdf;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        padding: 8px 27px;
+        /* position: fixed; */
+        top: 10px;
+        right: 0;
+        left: 10px;
+        z-index: 1000;
+    }
+
+    .flex-item {
+        -webkit-flex: 0 1 auto;
+        -ms-flex: 0 1 auto;
+        flex: 0 1 auto;
+    }
+
+    .nav-item-divider {
+        height: 1px;
+        margin: 1rem 0;
+        overflow: hidden;
+        background-color: rgba(236, 238, 239, 0.3);
+    }
+
+    @media (min-width: 768px) {
+        .dashboard-app {
+            margin-left: 210px;
+            /* margin-top: 5px; */
+        }
+        .dashboard-compact .dashboard-app {
+            margin-left: 0;
+        }
+    }
+    @media (min-width: 768px) {
+        .dashboard-toolbar {
+            /* left: 238px; */
+            display:none;
+        }
+        .dashboard-compact .dashboard-toolbar {
+            left: 0;
+        }
+        .menu-toggle{
+        display:none;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .dashboard-content {
+            padding: 15px 0px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .dashboard-nav {
+           height:100%;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .dashboard-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            /* right: 30%;
+            left: 30%; */
+            bottom: 0;
+            z-index: 1070;
+            margin-bottom: 10%;
+            margin-bottom:40px;
+            margin-right:10px;
+        }
+
+        .dashboard-nav.mobile-show {
+            display: block;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .dashboard-nav header .menu-toggle {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+        }
+    }
+
+
+    .dashboard-nav-item.dashboard-nav-item--active{
+        background-color:#5A65B0;
+    }
+
+  input:not([type="button"]):not([type="submit"]):not([type="reset"]):hover, input:not([type="button"]):not([type="submit"]):not([type="reset"]):focus, textarea:hover, textarea:focus, select:hover, select:focus {
+    border-color: none!important;
+    outline: none;
+    box-shadow: none;
+  }
+
+  
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: none;
+  background-color: #F6F6F6;
+  border-radius:8px 8px 0px 0px;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px;
+  transition: 0.3s;
+  font-size: 16px;
+  font-weight:600;
+  width: 50%;
+  letter-spacing: 0;
+  border-radius:8px 8px 0px 0px;
+  margin-bottom: 5px;
+}
+
+/* Change background color of buttons on hover */
+/* .tab button:hover {
+  background-color: #fff;
+  color: #5C6BAC;
+} */
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #fff;
+  color: #5C6BAC;
+  
+}
+
+/* Style the tab content */
+.tabcontent {
+  padding: 20px 20px;
+  -webkit-animation: fadeEffect 1s;
+  animation: fadeEffect 1s;
+  background-color: #fff;
+  border-radius:0px 0px 8px 8px;
+  border: none;
+  /* height:100vh; */
+}
+/* Style the tab */
+
+
+.para{
+  font-size:14px;
+  letter-spacing: 0;
+  color: #696F79;
+  margin-right:5px;
+}
+
+.type{
+  font-size:14px;
+  letter-spacing: 0;
+  color: #696F79;
+  border: 1px solid #5C6BAC; 
+  border-radius: 8px;
+}
+
+.text_area{
+  background-color: #F3F3F3;
+  color: #696F79;
+  border-radius:8px;
+  font-size:14px;
+  letter-spacing: 0;
+  width:100%;
+}
+
+.generate{
+  font-size: 16px;
+  letter-spacing: 0;
+  background-color: #5C6BAC;
+  border-radius: 8px;
+}
+
+
+/* drag and upload  */
+.box {
+  position: relative;
+  background: #ffffff;
+  width: 100%;
+}
+
+.dropzone-wrapper {
+  border: 2px dashed #5C6BAC;
+  position: relative;
+  height: 400px;
+  margin: 10px;
+}
+
+.dropzone-desc {
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 16px;
+  /* width: 100%; */
+}
+
+.dropzone,
+.dropzone:focus {
+  position: absolute;
+  /* outline: none !important; */
+  width: 100%;
+  height: 400px;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.preview-zone {
+  text-align: center;
+}
+
+.preview-zone .box {
+  box-shadow: none;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+/* drag and upload  */
+
+.drag{
+  color: #5C6BAC;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.selectbtn{
+  color: #fff;
+  background-color: #5C6BAC;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.limit{
+  color: #444444;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.questions{
+  color: #5B5B5B;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.answers{
+  color: #3792A3;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+
+@media only screen and (max-width: 767px){
+  .dropzone-wrapper {
+  border: 2px dashed #5C6BAC;
+  position: relative;
+  height: 400px;
+  margin: 10px;
+}
+.dropzone,
+.dropzone:focus {
+  position: absolute;
+  /* outline: none !important; */
+  width: 100%;
+  height: 400px;
+  cursor: pointer;
+  opacity: 0;
+}
+}
+
+@media only screen and (min-width: 768px){
+.tabcontent {
+  height:100vh;
+}
+}
+
+th{
+  color: #5C6BAC !important;
+  font-size: 14px;
+}
+
+td{
+  color: #000 !important;
+  font-size: 12px;
+}
+
+select{
+  color: #5C6BAC;
+  font-size: 14px;
+  font-weight:600;
+  width: 80%;
+}
+
+.selectfile{
+  font-size: 16px;
+  letter-spacing: 0;
+  background-color: #5C6BAC;
+  border-radius: 8px;
+}
+
+.dragfile{
+  color: #5C6BAC;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+</style>
+
+<div class="w-100" style="background-color: white;box-shadow: 0px 3px 6px #00000012;position:fixed;z-index: 1">
+  <nav class="navbar navbar-expand " style="box-shadow: 0px 3px 6px #00000012;height:70px ">
+      <div class="container-fluid">
+          <div class="navbar-brand">
+              <a href="../index.html">
+                  <img src="./images/Logo.png" alt="" style="width:100px;margin-left:60px;">
+              </a>
+          </div>
+          <div class="navbar-nav">
+              <button class="border-0 p-2" style="width:80px;background-color:#2163D3;color:white;border-radius: 8px;font-size: 11px;letter-spacing: 0.4px;font-family:'Urbanist',sans-serif;">
+                  <i class="fa-regular fa-user"></i> Admin
+              </button>
+          </div>
+      </div>
+  </nav>
+</div>
+
+<div class='dashboard'>
+  <div class="dashboard-nav py-3 text-white" style="margin-top:70px;position:fixed">      
+      <nav class="dashboard-nav-list">
+          <a onclick="movetoactive('Dashboard.php','1')" id="1" class="dashboard-nav-item">
+              <i class="bi bi-columns-gap" style="margin-right:10px;"></i> Dashboard 
+          </a>
+          <a onclick="movetoactive('','2')" id="2" class="dashboard-nav-item"> 
+              <i class="bi bi-list-ul" style="margin-right:10px;"></i> All
+          </a>
+      </nav>
+      <nav class="dashboard-nav-list mt-5">
+          <a onclick="movetoactive('','3')" id="3" class="dashboard-nav-item">
+              <i class="bi bi-list-task" style="margin-right:10px;"></i>Project
+          </a>
+          <a onclick="movetoactive('','4')" id="4" class="dashboard-nav-item"> 
+              <i class="bbi bi-collection" style="margin-right:10px;"></i>Library
+              <!-- <i class="bi bi-collection"></i> -->
+          </a>
+          <a onclick="movetoactive('','5')" id="5" class="dashboard-nav-item">
+              <i class="bi bi-calendar-check" style="margin-right:10px;"></i>Review
+          </a>            
+          <a onclick="movetoactive('','6')" id="6" class="dashboard-nav-item">
+              <i class="bi bi-gear-fill" style="margin-right:10px;"></i>Setting 
+          </a>
+          <a onclick="movetoactive('','7')" id="7" class="dashboard-nav-item">
+              <i class="bi bi-people" style="margin-right:10px;"></i>Admin
+          </a>
+      </nav>
+      <nav class="dashboard-nav-list mt-5" style="padding:6px 0px 6px 20px;">
+          <div>
+              <h6 style="font-family:'Roboto',sans-serif;font-size:12px;font-weight:500;">Follow us</h6>
+              <div style="display:flex;">
+                  <a style="margin:5px"><i class="bi bi-linkedin"></i></a>
+                  <a style="margin:5px"><i class="bi bi-facebook"></i></a>
+                  <a style="margin:5px"><i class="bi bi-youtube"></i></a>
+              </div>
+          </div>
+          <div class="mt-4">
+              <h6 style="font-family:'Roboto',sans-serif;font-size:12px;font-weight:500;">Call us</h6>
+              <h6 style="font-family:'Roboto',sans-serif;font-size:12px;font-weight:500;">+91-9845543804</h6>                
+          </div>
+          <div class="mt-4">
+              <h6 style="font-family:'Roboto',sans-serif;font-size:12px;font-weight:500;">Privacy Policy</h6>
+              <h6 style="font-family:'Roboto',sans-serif;font-size:12px;font-weight:500;">© 2024 RightSense Technologies</h6>                
+          </div>
+      </nav>
+  </div>
+  
+  <div class='dashboard-app' >  
+    <div class='dashboard-content p-3' style="background-color: #CFD0D1;height:100%;"> 
+
+      <div class="mt-4" style="height:100%;background-color: #fff;border-radius: 8px;">
+        <!-- Tab  -->
+        <div class="tab">
+          <button class="tablinks active" onclick="openCity(event, 'single')"><i class="bi bi-filter-right"></i> Single Response</button>
+          <button class="tablinks" onclick="openCity(event, 'bulk')"><i class="bi bi-file-earmark-arrow-up"></i> Bulk Upload</button>
+        </div>
+  
+        <!-- single response Tab content -->
+        <div id="single" class="tabcontent">
+          
+            <div class="row">
+              <div class="col-md-6 mt-3">
+                  <div style="display: flex; align-items: center;">
+                    <div class="para">Enter the No. of relevant documents to search from the knowledge base</div>
+                    <input class="p-1 type" type="text" placeholder="Type here...">
+                  </div>
+
+                  <div class="p-2 mt-2" style="border: 1px solid #5C6BAC; border-radius:8px;">
+                    <h4 style="color: #5C6BAC;font-size:16px;letter-spacing: 0;"> RFP Query </h4>
+                    <textarea class="border-0 p-2 text_area" name="" id="" cols="50" rows="3" placeholder="Enter the question here..."></textarea>
+                    <div class="text-end"> 
+                      <button class="p-2 px-3 mt-2 text-white border-0 font-weight-bold generate ">Generate Response</button>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="col-md-6 p-3 response mt-3" style="background-color: #5C6BAC;color: #fff;border-radius:8px;display:none;">
+                <h4 class="mb-3" style="color: #fff;font-size:16px;letter-spacing: 0;">RESPONSE </h4>
+                <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. </div>
+                <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. </div>
+                <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. </div>
+                <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. </div>
+                <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. </div>
+              </div>
+
+              <div class="mt-4 mb-2 response" style="display:none;">
+                <h4 class="mb-3" style="color: #5C6BAC;font-size:16px;letter-spacing: 0;">Top 5 relevant questions from the knowledge base </h4>
+                <div class="row">
+                  <div class="col-md-6" >
+                    <div class="p-1 text-white mt-3" style="font-size: 11px;background-color: #5B5B5B;width: max-content">QUESTION</div> 
+                    <div style="border: 1px solid #5C6BAC">
+                        <div class="questions p-2">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti ipsa quidem sequi
+                          expedita omnis atque dolores 
+                        </div>
+                        <hr style="margin:0;">
+                        <div class="questions p-2">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti ipsa quidem sequi
+                          expedita omnis atque dolores 
+                        </div>
+                        <hr style="margin:0;">
+                        <div class="questions p-2">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti ipsa quidem sequi
+                          expedita omnis atque dolores 
+                        </div>
+                        <hr style="margin:0;">
+                        <div class="questions p-2">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti ipsa quidem sequi
+                          expedita omnis atque dolores 
+                        </div>
+                        <hr style="margin:0;">
+                        <div class="questions p-2">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti ipsa quidem sequi
+                          expedita omnis atque dolores 
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="p-1 text-white mt-3" style="font-size: 11px;background-color: #3792A3;width: max-content">ANSWERS</div> 
+                    <div style="border: 1px solid #5C6BAC">
+                        <div class="answers p-2">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti ipsa quidem sequi
+                          expedita omnis atque dolores 
+                        </div>
+                        <hr style="margin:0;">
+                        <div class="answers p-2">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti ipsa quidem sequi
+                          expedita omnis atque dolores 
+                        </div>
+                        <hr style="margin:0;">
+                        <div class="answers p-2">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti ipsa quidem sequi
+                          expedita omnis atque dolores 
+                        </div>
+                        <hr style="margin:0;">
+                        <div class="answers p-2">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti ipsa quidem sequi
+                          expedita omnis atque dolores 
+                        </div>
+                        <hr style="margin:0;">
+                        <div class="answers p-2">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti ipsa quidem sequi
+                          expedita omnis atque dolores 
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        </div>
+
+        <!-- bulk upload Tab content -->
+        <div id="bulk" class="tabcontent" style="display: none;height: 100%">
+          <div class="none">
+            <div >
+              <div class="p-2" style="border: 1px solid #5C6BAC;border-radius:8px">
+                <select class="p-2" name="" id="" style="background-color: #EDEDED;border: none">
+                  <option value="">Question No.</option>
+                </select>
+                <button class="px-3 p-1 text-white border-0 font-weight-bold selectfile" style="margin-left:20px">Select File</button>
+              </div>
+              <h4 class="my-3" style="color: #5C6BAC;font-size:16px;letter-spacing: 0;">Uploaded content preview:</h4>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Question No.</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Sub Category</th>
+                    <th scope="col">Question</th>
+                    <th scope="col">Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td scope="row">CS 1.1</td>
+                    <td>Cloud Deployment</td>
+                    <td>Security</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
+                    <td>None</td>
+                  </tr>
+                  <tr>
+                    <td scope="row">CS 1.2</td>
+                    <td>Cloud Deployment</td>
+                    <td>Security</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
+                    <td>None</td>
+                  </tr>
+                  <tr>
+                    <td scope="row">CS 1.3</td>
+                    <td>Cloud Deployment</td>
+                    <td>Security</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
+                    <td>None</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div>
+              <h4 class="mb-3 mt-5" style="color: #5C6BAC;font-size:16px;letter-spacing: 0;">Select the question column:</h4>
+              <div class="p-2" style="border: 1px solid #5C6BAC;border-radius:8px">
+                <select class="p-2" name="" id="" style="background-color: #EDEDED;border: none">
+                  <option value="">Question No.</option>
+                </select>
+                <button class="px-3 p-1  text-white border-0 font-weight-bold generate " style="margin-left:20px">Generate Response</button>
+              </div>
+              <h4 class="my-3" style="color: #5C6BAC;font-size:16px;letter-spacing: 0;">Generated responses:</h4>
+
+              <table class="table table-bordered">
+              <thead>
+                  <tr>
+                    <th scope="col">Question No.</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Sub Category</th>
+                    <th scope="col">Question</th>
+                    <th scope="col">Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td scope="row">CS 1.1</td>
+                    <td>Cloud Deployment</td>
+                    <td>Security</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
+                    <td>None</td>
+                  </tr>
+                  <tr>
+                    <td scope="row">CS 1.2</td>
+                    <td>Cloud Deployment</td>
+                    <td>Security</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
+                    <td>None</td>
+                  </tr>
+                  <tr>
+                    <td scope="row">CS 1.3</td>
+                    <td>Cloud Deployment</td>
+                    <td>Security</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</td>
+                    <td>None</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="text-center">
+              <button class="px-3 p-1 text-white border-0 font-weight-bold generate " style="margin-left:20px">Download Excel File</button>
+            </div>
+          </div>
+          <div class="dragfile" style="display: none;">
+            <div class="dropzone-wrapper " style="display: flex; align-items: center; justify-content: center;">
+              <div class="dropzone-desc">
+
+                  <div class="preview-zone hidden">
+                    <div class="box box-solid">                       
+                      <div class="box-body"></div>
+                    </div>
+                  </div>
+
+                  <i class="bi bi-cloud-upload" style="color: #5C6BAC;font-size: 40px;font-weight:700"></i>
+                  <div class="drag mt-2">Drag and Drop here</div>
+                  <div class="my-3">or</div>
+                  <button type="submit" class="btn selectbtn">Select file</button>
+                  <div class="my-3 limit">Limit 200MB per file : GSV,XLVS</div>
+
+              </div>
+              <input type="file" name="img_logo" class="dropzone" style="border: 1px solid red !important">
+            </div>
+          </div>   
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+ <!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <!-- Bootstrap tooltips -->
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+ <!-- Bootstrap core JavaScript -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+<script>
+  const mobileScreen = window.matchMedia("(max-width: 990px )");
+    $(document).ready(function () {
+        $(".dashboard-nav-dropdown-toggle").click(function () {
+            $(this).closest(".dashboard-nav-dropdown")
+                .toggleClass("show")
+                .find(".dashboard-nav-dropdown")
+                .removeClass("show");
+            $(this).parent()
+                .siblings()
+                .removeClass("show");
+        });
+        $(".menu-toggle").click(function () {
+            if (mobileScreen.matches) {
+                $(".dashboard-nav").toggleClass("mobile-show");
+            } else {
+                $(".dashboard").toggleClass("dashboard-compact");
+            }
+        });
+    });
+
+
+    // change background color on click of sidemenu
+    function logout() {
+        localStorage.clear();
+        window.location = 'index.html';
+    }          
+    if (localStorage.getItem("pagenavbarid") == "" || localStorage.getItem("pagenavbarid") == null || localStorage.getItem("pagenavbarid") == "null" || localStorage.getItem("pagenavbarid") == " ") {
+        document.getElementById("1").classList.add("dashboard-nav-item--active")
+    } else {
+        var pagenavbarid = localStorage.getItem("pagenavbarid");
+        $(".dashboard-nav-item").removeClass("dashboard-nav-item--active"); // This will remove active classes from all <li> tags
+        document.getElementById(pagenavbarid).classList.add("dashboard-nav-item--active")
+    }
+
+    function movetoactive(path, id) {   
+    localStorage.setItem("pagenavbarid", id)
+    $(".dashboard-nav-item").removeClass("dashboard-nav-item--active"); // This will remove active classes from all <li> tags
+    document.getElementById(id).classList.add("dashboard-nav-item--active")
+    window.location = (path)
+    }
+
+  // tab function
+  function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+
+
+  // drag and upload 
+  function readFile(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function(e) {
+        var htmlPreview =
+          '<img width="200" src="' + e.target.result + '" />' +
+          '<p>' + input.files[0].name + '</p>';
+        var previewZone = $(input).parent().find('.preview-zone'); // Adjusted selector
+
+        previewZone.removeClass('hidden');
+        previewZone.find('.box-body').empty().append(htmlPreview);
+
+        // Hide upload elements after uploading image
+        $(input).parent().find('i, .drag, .my-3, .selectbtn, .limit').hide();
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  function reset(e) {
+    e.wrap('<form>').closest('form').get(0).reset();
+    e.unwrap();
+  }
+
+  $(".dropzone").change(function() {
+    readFile(this);
+  });
+
+  $('.dropzone-wrapper').on('dragover', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    $(this).addClass('dragover');
+  });
+
+  $('.dropzone-wrapper').on('dragleave', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    $(this).removeClass('dragover');
+  });
+
+  $('.remove-preview').on('click', function() {
+    var boxZone = $(this).parents('.preview-zone').find('.box-body');
+    var previewZone = $(this).parents('.preview-zone');
+    var dropzone = $(this).parents('.form-group').find('.dropzone');
+    boxZone.empty();
+    previewZone.addClass('hidden');
+    reset(dropzone);
+
+    // Show upload elements after removing preview
+    $(this).parents('.dropzone-wrapper').find('i, .drag, .my-3, .selectbtn, .limit').show();
+  });
+
+
+
+  $(document).ready(function() {
+      $(".generate").click(function() {
+          $(".response").show();
+      });
+  });
+
+
+  $(document).ready(function() {
+      $(".selectfile").click(function() {
+          $(".dragfile").show();
+          $(".none").hide();
+      });
+  });
+
+</script>
+
+</html>
